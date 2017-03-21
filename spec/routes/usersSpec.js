@@ -93,10 +93,9 @@ describe("UsersCtrl", () => {
             }
 
         });
-        });
 
         it("Should have a valid password", next => {
-            let validPasswords = [
+            let invalidPasswords = [
                 'aA170',
                 'P4ssw0rD',
                 'P@sse',
@@ -110,7 +109,7 @@ describe("UsersCtrl", () => {
                 '!@?#1234567890A',
             ];
 
-            for (let password of validPasswords ) {
+            for (let password of invalidPasswords ) {
                 let isValid = UsersCtrl.isValidPassword(password);
                 expect(isValid).toBeFalsy();
             }
