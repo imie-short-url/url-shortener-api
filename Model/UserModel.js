@@ -9,3 +9,7 @@ var userSchema = new Schema({
     urls: [{ url: String, date: Date.now }],
     urlsMime: [{ mime: String, date: Date.now }]
 });
+
+let User = mongoose.model('User', userSchema);
+
+module.exports = User;

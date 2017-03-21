@@ -4,6 +4,6 @@ const defaultController = require('../Controller/DefaultController');
 
 defaultRouter.get('/', defaultController.indexAction);
 defaultRouter.post('/register', defaultController.registerAction);
-defaultRouter.post('/connect', defaultController.connectAction);
+defaultRouter.post('/connect', defaultController.userRegisterAction);
 
 module.exports = defaultRouter;
