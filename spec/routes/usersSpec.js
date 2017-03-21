@@ -1,4 +1,4 @@
-const UsersCtrl = require('../../services/users');
+const UsersCtrl = require('../../routes/users');
 
 
 describe("UsersCtrl", () => {
