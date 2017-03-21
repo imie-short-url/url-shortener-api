@@ -38,7 +38,7 @@ describe("UsersCtrl", () => {
 
             for (let email of validEmails ) {
                 let isValid = UsersCtrl.isValidEmail(email);
-                expect(codeisValid).toBeTruthy();
+                expect(isValid).toBeTruthy();
             }
 
         });
@@ -61,8 +61,47 @@ describe("UsersCtrl", () => {
 
             for (let email of invalidEmails ) {
                 let isValid = UsersCtrl.isValidEmail(email);
-                expect(codeisValid).toBeFalsy();
+                expect(isValid).toBeFalsy();
             }
+        });
+
+        it("Should have a valid password", next => {
+            let validPasswords = [
+                'aA1!0',
+                'P4ssw0r#',
+                'P@ss4',
+                '#az9M',
+                '0O1l!',
+                '!@?#4Aa',
+                '!@?#4AbcdEfghijKlmnOpqrSTUVwxyz',
+                '!@?#1234567890Aa',
+            ];
+
+            for (let password of validPasswords ) {
+                let isValid = UsersCtrl.isValidPassword(password);
+                expect(isValid).toBeTruthy();
+            }
+
+        });
+        });
+
+        it("Should have a valid password", next => {
+            let validPasswords = [
+                'aA170',
+                'P4ssw0rD',
+                'P@sse',
+                '#az9m',
+                '0O1l!',
+                '!@?#aAa',
+                '!@?#AbcdEfghijKlmnOpqrSTUVwxyz',
+                '!@?#1234567890A',
+            ];
+
+            for (let password of validPasswords ) {
+                let isValid = UsersCtrl.isValidPassword(password);
+                expect(isValid).toBeFalsy();
+            }
+
         });
     });
 });
