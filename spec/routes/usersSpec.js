@@ -93,7 +93,10 @@ describe("UsersCtrl", () => {
                 '#az9m',
                 '0O1l!',
                 '!@?#aAa',
-                '!@?#AbcdEfghijKlmnOpqrSTUVwxyz',
+                '!@?=4Aa',
+                '!@)#4Aa',
+                '!.;:§^$ù*èéâà€&~¨+-_*/µ?¤#4Aa',
+                '!@?#4AbcdEfghijKlmnOpqrSTUVwxyz',
                 '!@?#1234567890A',
             ];
 
