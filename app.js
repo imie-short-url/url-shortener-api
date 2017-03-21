@@ -6,6 +6,16 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 
+//Url de notre base de donnée
+mongoose.connect('mongodb://localhost/momobibiUrls');
+
+//Connection à la base de donnée
+//message si la connection est réussi ou en erreur
+var db = mongoose.connection;
+db.on('error', console.error.bind(console, 'Erreur lors de la connexion'));
+db.once('open', function (){
+    console.log("Connexion à la base OK");
+});
 
 var router = require('./routes/Router');
 

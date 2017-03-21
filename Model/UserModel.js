@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-mongoose.connect('mongodb://localhost/momoBibiUrl');
+//mongoose.connect('mongodb://localhost/momoBibiUrl');
 
 var Schema = mongoose.Schema;
 
