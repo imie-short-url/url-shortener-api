@@ -3,7 +3,7 @@ const UsersCtrl = require('../../routes/users');
 
 describe("UsersCtrl", () => {
     describe("=> register", () => {
-        it("Should have an valid email and valid password", next => {
+        it("Should have a valid email and a valid password", next => {
             const req = {
                 query: {
                     email: 'test@test.me',
@@ -26,14 +26,21 @@ describe("UsersCtrl", () => {
             UsersCtrl.index(req, res);
         });
 
-        it("Should have an valid email", next => {
+        it("Should have a valid email", next => {
             let validEmails = [
                 'test@test.me',
+                'tEsT@test.me',
+                'test.test@test.me',
+                'Test.exAmple+teSt@test.me',
+                'test.test-exAmple@test.me',
+                'a@test.me',
+                'example-test@test-test.me',
+                'tes@s.solutions',
+                'tes@s.solutions2',
+                'tes@s.s0lutions',
+                '#!$%&\'*+-/=?^_`{}|~@example.org',
+                '1234567890123456789012345678901234567890123456789012345678901234+@example.com',
                 'test@422test.me',
-                'me-you@email.agency',
-                'me-yo_u@em-ail.email',
-                'me-yo_u.me-yo_u+me-yo_u-me-yo_u@em-ail.email',
-                'me-yo_u.me8-yo4_u+m3-yo_u-me-yo_u2@em-ail.email',
             ];
 
             for (let email of validEmails ) {
@@ -43,19 +50,22 @@ describe("UsersCtrl", () => {
 
         });
 
-        it("Should not have an valid email", next => {
+        it("Should not have a valid email", next => {
             let invalidEmails = [
                 'te st@test.me',
+                'te"st@test.me',
+                'te"st"@test.me',
+                '.test@test.me',
+                'test.@test.me',
+                'te..st@test.me',
+                'a"b(c)d,e:f;g<h>i[j\\k]l@example.com',
+                'test@test-example.me',
                 'te%st@test.me',
-                'te\'st@test.me',
+                'test@123.me',
                 'test@test',
-                'test@test.a',
-                'test@test.a120',
-                'test@test.c0m',
-                'te#st@test.c0m',
-                'te"st@test.c0m',
-                'testtest.c0m',
-                'test@t.c0m',
+                'test@test@test',
+                'test.test',
+                '1234567890123456789012345678901234567890123456789012345678901234+X@example.com',
                 '',
             ];
 
