@@ -1,3 +1,5 @@
+const userModel = require("../Model/UserModel");
+
 
 class DefaultController{
 
@@ -6,6 +8,10 @@ class DefaultController{
     }
 
     registerAction(req, res){
+        var userEmail = userModel.email;
+        var userPassword = userModel.password;
+
+
 
     }
 
@@ -13,5 +19,6 @@ class DefaultController{
 
     }
 }
+
 
 module.exports = new DefaultController();

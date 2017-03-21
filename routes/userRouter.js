@@ -1,6 +1,6 @@
 const express = require('express');
 const userRouter = express.Router();
-const userController = require('../Controller/UserController');
+const userController = require('.././UserController');
 
 userRouter.get('/:userId(\\d+)/add-url', userController.addUrlAction);
 userRouter.post('/:userId(\\d+)/remove-url/:urlId(\\d+)', userController.deleteUrlAction);

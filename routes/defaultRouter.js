@@ -1,6 +1,6 @@
 const express = require("express");
 const defaultRouter = express.Router();
-const defaultController = require('../Controller/DefaultController');
+const defaultController = require('.././DefaultController');
 
 defaultRouter.get('/', defaultController.indexAction);
 defaultRouter.post('/register', defaultController.registerAction);
