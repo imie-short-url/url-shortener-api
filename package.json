@@ -4,8 +4,7 @@
   "private": true,
   "scripts": {
     "start": "node ./bin/www",
-    "test": "./node_modules/.bin/jasmine-node spec/ ./",
-    "test-watch": "./node_modules/.bin/jasmine-node spec/ --autotest --watch ./"
+    "test": "./node_modules/.bin/jasmine-node spec/"
   },
   "dependencies": {
     "body-parser": "~1.16.0",

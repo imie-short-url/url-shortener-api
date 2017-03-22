@@ -1,4 +1,4 @@
-const UrlsSrvce = require('../../services/urls');
+const UrlsSrvce = require('../../Service/UrlsService');
 
 
 describe("Urls Service", () => {

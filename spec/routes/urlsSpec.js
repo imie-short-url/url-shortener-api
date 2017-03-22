@@ -1,4 +1,4 @@
-const UrlsCtrl = require('../../routes/urls');
+const UrlsCtrl = require('../../Controller/UrlsController');
 
 describe("UrlsCtrl", () => {
     describe("=> user_dashboard", () => {
