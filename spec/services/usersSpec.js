@@ -24,8 +24,8 @@ describe("Users Service", () => {
             for (let email of validEmails ) {
                 let isValid = UsersSrvce.isValidEmail(email);
                 expect(isValid).toBeTruthy();
-                next();
             }
+            next();
 
         });
 
@@ -51,8 +51,8 @@ describe("Users Service", () => {
             for (let email of invalidEmails ) {
                 let isValid = UsersSrvce.isValidEmail(email);
                 expect(isValid).toBeFalsy();
-                next();
             }
+            next();
         });
 
         it("Should have a valid password", next => {
@@ -70,8 +70,8 @@ describe("Users Service", () => {
             for (let password of validPasswords ) {
                 let isValid = UsersSrvce.isValidPassword(password);
                 expect(isValid).toBeTruthy();
-                next();
             }
+            next();
 
         });
 
@@ -93,8 +93,8 @@ describe("Users Service", () => {
             for (let password of validPasswords ) {
                 let isValid = UsersSrvce.isValidPassword(password);
                 expect(isValid).toBeFalsy();
-                next();
             }
+            next();
 
         });
     });
