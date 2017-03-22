@@ -1,4 +1,4 @@
-const UsersSrvce = require('../../services/users');
+const UsersSrvce = require('../../Controller/DefaultController');
 
 
 describe("Users Service", () => {

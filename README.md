@@ -7,6 +7,7 @@
  ##Install
 ```
     git clone git@github.com:imie-short-url/url-shortener-api.git
+    cd url-shortener-api
     npm intall
 ```
 

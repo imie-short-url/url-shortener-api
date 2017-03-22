@@ -1,4 +1,6 @@
 #!/usr/bin/env node
+const router= require ('../routes/Router');
+
 
 /**
  * Module dependencies.
@@ -6,7 +8,8 @@
 
 var app = require('../app');
 var debug = require('debug')('recette-cdpn-dl:server');
-var http = require('http');
+var server = require('express')();
+
 
 /**
  * Get port from environment and store in Express.
@@ -16,10 +19,13 @@ var port = normalizePort(process.env.PORT || '3000');
 app.set('port', port);
 
 /**
- * Create HTTP server.
+ * Router
  */
+server.use('/', router);
 
-var server = http.createServer(app);
+server.get('/', (req, res) => {
+  res.json({message:'Hello World !!!'})
+});
 
 /**
  * Listen on provided port, on all network interfaces.
@@ -28,6 +34,7 @@ var server = http.createServer(app);
 server.listen(port);
 server.on('error', onError);
 server.on('listening', onListening);
+console.log('server listening on port '+ port);
 
 /**
  * Normalize a port into a number, string, or false.
