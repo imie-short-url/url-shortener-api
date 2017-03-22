@@ -21,7 +21,7 @@ class DefaultController{
             success: false,
             message: 'ERR_REGISTRATION_FAILED'
         })
-    }œ
+    };
 
     loginAction(req, res){
         let post = req.body;
