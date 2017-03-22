@@ -7,8 +7,7 @@ describe("UsersCtrl", () => {
             const req = {
                 query: {
                     email: 'test@test.me',
-                    password: 'P4ssw0r#',
-                    passwordBis: 'P4ssw0r#'
+                    password: 'P4ssw0r#'
                 }
             };
             const res = {
@@ -29,8 +28,7 @@ describe("UsersCtrl", () => {
         it("Should not have password", next => {
             const req = {
                 query: {
-                    email: 'test@test.me',
-                    passwordBis: 'P4ssw0r#'
+                    email: 'test@test.me'
                 }
             };
             const res = {
@@ -52,30 +50,6 @@ describe("UsersCtrl", () => {
         it("Should not have email", next => {
             const req = {
                 query: {
-                    password: 'P4ssw0r#',
-                    passwordBis: 'P4ssw0r#'
-                }
-            };
-            const res = {
-                status: (code) => {
-                    return {
-                        render: (view, data) => {
-                            expect(code).toBe(200);
-                            expect(data.success).toBeFalsy();
-                            expect(data.message).toBe('ERR_EMAIL_EMPTY');
-                            next();
-                        }
-                    }
-                }
-            };
-
-            UsersCtrl.index(req, res);
-        });
-
-        it("Should not have the passwordBis", next => {
-            const req = {
-                query: {
-                    email: 'test@test.me',
                     password: 'P4ssw0r#'
                 }
             };
@@ -85,7 +59,7 @@ describe("UsersCtrl", () => {
                         render: (view, data) => {
                             expect(code).toBe(200);
                             expect(data.success).toBeFalsy();
-                            expect(data.message).toBe('ERR_PASSWORD_EMPTY');
+                            expect(data.message).toBe('ERR_EMAIL_EMPTY');
                             next();
                         }
                     }
