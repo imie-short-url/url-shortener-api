@@ -6,8 +6,7 @@ var Schema = mongoose.Schema;
 var userSchema = new Schema({
     email:  String,
     password: String,
-    urls: [{ url: String, date: Date}],
-    urlsMime: [{ mime: String, date: Date}]
+    urls: [{ url: String, mime: String, date: Date}]
 });
 
 let User = mongoose.model('User', userSchema);

@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
-const User = require('../Model/UserModel');
+const User = require('../Model/UserModel')
+const jwt = require('jsonwebtoken');
 const userService = require('../Service/UserService');
 
 class DefaultController{
@@ -28,16 +29,21 @@ class DefaultController{
         let email = post.email;
         let password = post.password;
 
-        if((email != null) && (password != null)){
-            User.findOne({email: email}, function(user){
-                if(user){
-                    res.json({
-                        success: false,
-                        Token: 'AwesomeToken'
-                    })
+        if ((email != null) && (password != null)) {
+            User.findOne({email: email}, function (user) {
+                if (user) {
+                    if (user.password === password) {
+                        let token = jwt.sign({userId: user._id}, 'secret');
+
+                        res.json({
+                            success: false,
+                            Token: token
+                        })
+                    }
                 }
-            })
-        }
+
+                return false
+            });
 
         //TODO: return more specific error message
         res.json({
