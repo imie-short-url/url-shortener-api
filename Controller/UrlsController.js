@@ -1,16 +1,11 @@
-const mongoose = require('mongoose');
-const User = require('../Model/UserModel');
-const userService = require('../Service/UserService');
-
-class DefaultController{
-
+class UrlsController{
     registerAction(req, res){
         let post = req.body;
 
         let email = post.email;
         let password = post.password;
 
-        if(userService.isValidPassword(password) && userService.isValidEmail(email)) {
+        if(this.passwordValidate(password) && this.emailValidate(email)) {
             res.json({
                 success: true
             })
@@ -21,7 +16,7 @@ class DefaultController{
             success: false,
             message: 'ERR_REGISTRATION_FAILED'
         })
-    };
+    }
 
     loginAction(req, res){
         let post = req.body;
@@ -47,4 +42,4 @@ class DefaultController{
     }
 }
 
-module.exports = new DefaultController();
+module.exports = new UrlsController();

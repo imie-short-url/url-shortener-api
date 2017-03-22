@@ -1,8 +1,8 @@
-const UsersSrvce = require('../../Controller/DefaultController');
+const UsersSrvce = require('../../Service/UserService');
 
 
 describe("Users Service", () => {
-    describe("=> register", () => {
+    describe("=> Email validation", () => {
 
         it("Should have a valid email", next => {
             let validEmails = [
@@ -21,8 +21,11 @@ describe("Users Service", () => {
                 'test@422test.me',
             ];
 
-            for (let email of validEmails ) {
+            for (let email of validEmails) {
                 let isValid = UsersSrvce.isValidEmail(email);
+                if (!isValid){
+                    console.log(email+'->return false');
+                }
                 expect(isValid).toBeTruthy();
             }
             next();
@@ -48,12 +51,18 @@ describe("Users Service", () => {
                 '',
             ];
 
-            for (let email of invalidEmails ) {
+            for (let email of invalidEmails) {
                 let isValid = UsersSrvce.isValidEmail(email);
+                if (isValid){
+                    console.log(email+'->return true');
+                }
                 expect(isValid).toBeFalsy();
             }
             next();
         });
+    });
+
+    describe("=> Password validation", () => {
 
         it("Should have a valid password", next => {
             let validPasswords = [
@@ -69,13 +78,16 @@ describe("Users Service", () => {
 
             for (let password of validPasswords ) {
                 let isValid = UsersSrvce.isValidPassword(password);
+                if (!isValid){
+                    console.log(password+'->return false');
+                }
                 expect(isValid).toBeTruthy();
             }
             next();
 
         });
 
-        it("Should have a valid password", next => {
+        it("Should not have a invalid password", next => {
             let validPasswords = [
                 'aA170',
                 'P4ssw0rD',
@@ -92,6 +104,9 @@ describe("Users Service", () => {
 
             for (let password of validPasswords ) {
                 let isValid = UsersSrvce.isValidPassword(password);
+                if (isValid){
+                    console.log(password);
+                }
                 expect(isValid).toBeFalsy();
             }
             next();

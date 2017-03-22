@@ -1,4 +1,4 @@
-const UsersCtrl = require('../../routes/userRouter');
+const UsersCtrl = require('../../Controller/DefaultController');
 
 
 describe("UsersCtrl", () => {
@@ -22,7 +22,7 @@ describe("UsersCtrl", () => {
                 }
             };
 
-            UsersCtrl.index(req, res);
+            UsersCtrl.registerAction(req, res);
         });
 
         it("Should not have password", next => {
@@ -44,7 +44,7 @@ describe("UsersCtrl", () => {
                 }
             };
 
-            UsersCtrl.index(req, res);
+            UsersCtrl.registerAction(req, res);
         });
 
         it("Should not have email", next => {
@@ -66,7 +66,7 @@ describe("UsersCtrl", () => {
                 }
             };
 
-            UsersCtrl.index(req, res);
+            UsersCtrl.registerAction(req, res);
         });
 
         it("Should have no params", next => {
@@ -86,7 +86,7 @@ describe("UsersCtrl", () => {
                 }
             };
 
-            UsersCtrl.register(req, res);
+            UsersCtrl.registerAction(req, res);
         });
     });
 
@@ -111,7 +111,7 @@ describe("UsersCtrl", () => {
                 }
             };
 
-            UsersCtrl.login(req, res);
+            UsersCtrl.loginAction(req, res);
         });
 
         it("Should have an email and no password", next => {
@@ -133,7 +133,7 @@ describe("UsersCtrl", () => {
                 }
             };
 
-            UsersCtrl.login(req, res);
+            UsersCtrl.loginAction(req, res);
         });
 
         it("Should have no email but a password", next => {
@@ -155,7 +155,7 @@ describe("UsersCtrl", () => {
                 }
             };
 
-            UsersCtrl.login(req, res);
+            UsersCtrl.loginAction(req, res);
         });
 
         it("Should have no email and no password", next => {
@@ -175,13 +175,13 @@ describe("UsersCtrl", () => {
                 }
             };
 
-            UsersCtrl.login(req, res);
+            UsersCtrl.loginAction(req, res);
         });
 
         it("Should have invalid password", next => {
             const req = {
                 query: {
-                    email: 'test@test.me'
+                    email: 'test@test.me',
                     password: 'Pass'
                 }
             };
@@ -198,7 +198,7 @@ describe("UsersCtrl", () => {
                 }
             };
 
-            UsersCtrl.login(req, res);
+            UsersCtrl.loginAction(req, res);
         });
 
         it("Should have invalid email", next => {
@@ -221,7 +221,7 @@ describe("UsersCtrl", () => {
                 }
             };
 
-            UsersCtrl.login(req, res);
+            UsersCtrl.loginAction(req, res);
         });
 
         it("Should have invalid email and password", next => {
@@ -244,7 +244,7 @@ describe("UsersCtrl", () => {
                 }
             };
 
-            UsersCtrl.login(req, res);
+            UsersCtrl.loginAction(req, res);
         });
     });
 });
