@@ -90,7 +90,6 @@ describe("UrlsCtrl", () => {
                     Authorization: 'Bearer JWTtoken'
                 },
                 query: {
-                    user_id: 1,
                     url: 'https://wwww.google.fr'
                 }
             };
@@ -115,9 +114,7 @@ describe("UrlsCtrl", () => {
                 headers: {
                     Authorization: 'Bearer JWTtoken'
                 },
-                query: {
-                    user_id: 1
-                }
+                query: {}
             };
 
             const res = {
@@ -142,7 +139,6 @@ describe("UrlsCtrl", () => {
                     Authorization: 'Bearer JWTtoken'
                 },
                 query: {
-                    user_id: 1,
                     url: 'https://wwww.google.fr'
                 }
             };
@@ -161,6 +157,84 @@ describe("UrlsCtrl", () => {
 
             UrlsCtrl.addUrl(req, res);
         });
+
+    });
+
+
+    describe("=> delete_url", () => {
+
+        it("Should not have a token", next => {
+            const req = {
+                query: {
+                    url_id: 1
+                }
+            };
+
+            const res = {
+                status: (code) => {
+                    return {
+                        render: (view, data) => {
+                            expect(code).toBe(401);
+                            expect(data.success).toBeFalsy();
+                            next();
+                        }
+                    }
+                }
+            };
+
+            UrlsCtrl.deleteUrl(req, res);
+        });
+
+        it("Should not have a token", next => {
+            const req = {
+                headers: {
+                    Authorization: 'Bearer JWTtoken'
+                },
+                query: {}
+            };
+
+            const res = {
+                status: (code) => {
+                    return {
+                        render: (view, data) => {
+                            expect(code).toBe(200);
+                            expect(data.success).toBeFalsy();
+                            expect(data.message).toBe('ERR_URL_NOT_FOUND');
+                            next();
+                        }
+                    }
+                }
+            };
+
+            UrlsCtrl.deleteUrl(req, res);
+        });
+
+        it("Should not have a token", next => {
+            const req = {
+                headers: {
+                    Authorization: 'Bearer JWTtoken'
+                },
+                query: {
+                    url_id: 1
+                }
+            };
+
+            const res = {
+                status: (code) => {
+                    return {
+                        render: (view, data) => {
+                            expect(code).toBe(200);
+                            expect(data.success).toBeTruthy();
+                            next();
+                        }
+                    }
+                }
+            };
+
+            UrlsCtrl.deleteUrl(req, res);
+        });
+
+    
 
     });
 });
