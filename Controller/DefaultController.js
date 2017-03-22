@@ -1,30 +1,28 @@
 const mongoose = require('mongoose');
-const User = require('../Model/UserModel')
+const User = require('../Model/UserModel');
 
 class DefaultController{
-
-    indexAction(req, res){
-
-    }
 
     registerAction(req, res){
         let post = req.body;
 
         let email = post.email;
         let password = post.password;
-        let passwordBis = post.passwordBis;
 
-        if(passwordValidate(password, passwordBis) && emailValidate(email)) {
-            return true
-        } else {
-            return false
+        if(this.passwordValidate(password) && this.emailValidate(email)) {
+            res.json({
+                success: true
+            })
         }
 
-
-
+        //TODO: return more specific error message
+        res.json({
+            success: false,
+            message: 'ERR_REGISTRATION_FAILED'
+        })
     }
 
-    userRegisterAction(req, res){
+    loginAction(req, res){
         let post = req.body;
         let email = post.email;
         let password = post.password;
@@ -32,32 +30,30 @@ class DefaultController{
         if((email != null) && (password != null)){
             User.findOne({email: email}, function(user){
                 if(user){
-                    return true
-                } else {
-                    return false
+                    res.json({
+                        success: false,
+                        Token: 'AwesomeToken'
+                    })
                 }
             })
         }
 
+        //TODO: return more specific error message
+        res.json({
+            success: false,
+            message: 'ERR_REGISTRATION_FAILED'
+        })
     }
 
-    passwordValidate(password, passwordBis){
+    passwordValidate(password){
 
         let regularExpression = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@?#])[A-Za-z\d!@?#]{5,}/;
 
         if (password.test(regularExpression)){
-            if (passwordBis.test(regularExpression)){
-                if(password === passwordBis){
-                    return true;
-                } else {
-                    return false
-                }
-            } else {
-                return false
-            }
-        } else {
-            return false
+            return true;
         }
+
+        return false
     }
 
     emailValidate(email){
@@ -66,13 +62,13 @@ class DefaultController{
 
         if (email.test(regularExpression)){
             User.findOne({ email: email }, function(user){
-                if(user){
-                    return false
-                } else {
+                if(!user){
                     return true
                 }
             })
         }
+
+        return false
     }
 
 }
