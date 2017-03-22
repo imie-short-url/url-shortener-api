@@ -5,3 +5,4 @@ machine:
 dependencies:
   override:
     - npm install --dev
+    - npm test
