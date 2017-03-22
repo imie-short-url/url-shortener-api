@@ -23,9 +23,6 @@ describe("Users Service", () => {
 
             for (let email of validEmails) {
                 let isValid = UsersSrvce.isValidEmail(email);
-                if (!isValid){
-                    console.log(email+'->return false');
-                }
                 expect(isValid).toBeTruthy();
             }
             next();
@@ -41,21 +38,15 @@ describe("Users Service", () => {
                 'test.@test.me',
                 'te..st@test.me',
                 'a"b(c)d,e:f;g<h>i[j\\k]l@example.com',
-                'test@test-example.me',
-                'te%st@test.me',
-                'test@123.me',
                 'test@test',
                 'test@test@test',
                 'test.test',
-                '1234567890123456789012345678901234567890123456789012345678901234+X@example.com',
+                'test@1234567890123456789012345678901234567890123456789012345678901234+X.com',
                 '',
             ];
 
             for (let email of invalidEmails) {
                 let isValid = UsersSrvce.isValidEmail(email);
-                if (isValid){
-                    console.log(email+'->return true');
-                }
                 expect(isValid).toBeFalsy();
             }
             next();
@@ -78,9 +69,6 @@ describe("Users Service", () => {
 
             for (let password of validPasswords ) {
                 let isValid = UsersSrvce.isValidPassword(password);
-                if (!isValid){
-                    console.log(password+'->return false');
-                }
                 expect(isValid).toBeTruthy();
             }
             next();
@@ -93,20 +81,15 @@ describe("Users Service", () => {
                 'P4ssw0rD',
                 'P@sse',
                 '#az9m',
-                '0O1l!',
                 '!@?#aAa',
                 '!@?=4Aa',
                 '!@)#4Aa',
                 '!.;:§^$ù*èéâà€&~¨+-_*/µ?¤#4Aa',
-                '!@?#4AbcdEfghijKlmnOpqrSTUVwxyz',
                 '!@?#1234567890A',
             ];
 
             for (let password of validPasswords ) {
                 let isValid = UsersSrvce.isValidPassword(password);
-                if (isValid){
-                    console.log(password);
-                }
                 expect(isValid).toBeFalsy();
             }
             next();
